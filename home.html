@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bishesh Acharya | Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    /* Smooth scroll animation */
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="#" class="logo">Bishesh</a>
+    <nav>
+      <a href="#home" class="active">Home</a>
+      <a href="#education">Education</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="home" id="home">
+    <div class="content">
+      <h1>Hi, I'm Bishesh Acharya</h1>
+      <p class="initial-text">I'm a student passionate about web development and continuously learning about artificial intelligence. I enjoy bringing ideas to life through code and creativity—whether it’s building websites or editing videos.</p>
+      <a href="#contact" class="btn">Get in Touch</a>
+    </div>
+    <img src="bisu.jpg" alt="Bishesh Acharya" class="profile-image" />
+  </section>
+  
+  <section class="skills-section" id="skills">
+    <h2>My Skills</h2>
+    <div class="skills-grid">
+      <div class="skill">
+        <span><i class="fab fa-html5"></i> HTML & CSS</span>
+        <div class="progress-bar"><div class="progress" data-width="85%"></div></div>
+      </div>
+      <div class="skill">
+        <span><i class="fab fa-js-square"></i> JavaScript</span>
+        <div class="progress-bar"><div class="progress" data-width="70%"></div></div>
+      </div>
+      <div class="skill">
+        <span><i class="fab fa-python"></i> Python (Basic)</span>
+        <div class="progress-bar"><div class="progress" data-width="65%"></div></div>
+      </div>
+      <div class="skill">
+        <span><i class="fab fa-java"></i> Java (Basic)</span>
+        <div class="progress-bar"><div class="progress" data-width="60%"></div></div>
+      </div>
+      <div class="skill">
+        <span><i class="fas fa-code"></i> C (Basic)</span>
+        <div class="progress-bar"><div class="progress" data-width="55%"></div></div>
+      </div>
+      <div class="skill">
+        <span><i class="fas fa-video"></i> Video Editing</span>
+        <div class="progress-bar"><div class="progress" data-width="75%"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="projects-section" id="projects">
+    <h2>Projects</h2>
+    <div class="projects-grid">
+      <div class="project-entry">
+        <h3>PC Accessories Store</h3>
+        <p>An e-commerce website built to sell PC accessories. The website features product listings, shopping cart functionality, and user authentication.</p>
+        <a href="https://github.com/bisu617/PC-Accessories-Store" target="_blank" class="btn">View on GitHub</a>
+      </div>
+      <div class="project-entry">
+        <h3>Weather App</h3>
+        <p>A simple app that fetches weather data from the OpenWeatherMap API and displays it with location and icons. Built with JavaScript.</p>
+        <a href="https://github.com/bisu617/Weather-App" target="_blank" class="btn">View on GitHub</a>
+      </div>
+      <div class="project-entry">
+        <h3>To-Do List</h3>
+        <p>An interactive to-do list app that allows users to add, delete, and mark tasks as complete. Built with HTML, CSS, and JavaScript.</p>
+        <a href="https://github.com/bisu617/To-Do_List" target="_blank" class="btn">View on GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="education-section" id="education">
+    <h2>Education</h2>
+    <div class="education-container">
+      <div class="education-entry">
+        <h3>BCS (Bachelors in Computer Science)</h3>
+        <p>2nd Year Student</p>
+        <p>IIMS College – Affiliated with Taylor's University</p>
+        <p class="education-year">2024 – Present</p>
+      </div>
+    </div>
+  </section>
+  
+  
+  <section class="contact-section" id="contact">
+    <h2>Contact Me</h2>
+    <div class="contact-form-container">
+      <form action="#" method="POST" class="contact-form">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required placeholder="Your Name" />
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required placeholder="Your Email" />
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" required placeholder="Your Message"></textarea>
+        </div>
+        <button type="submit" class="btn">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <section class="social-media-section" id="social-media">
+    <h2>Follow Me</h2>
+    <div class="social-media-icons">
+        <a href="https://www.instagram.com/bishesh077/" target="_blank" class="social-icon instagram">
+            <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/bishesh-acharya-0a5151294/" target="_blank" class="social-icon linkedin">
+            <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="https://x.com/Bishesh077" target="_blank" class="social-icon x">
+            <i class="fab fa-twitter"></i> <!-- You can change this to X icon if available -->
+        </a>
+        <a href="mailto:bisheshacharya22@gmail.com" class="social-icon email">
+            <i class="fas fa-envelope"></i>
+        </a>
+    </div>
+</section>
+
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.width = entry.target.getAttribute("data-width");
+        }
+      });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll(".progress").forEach(bar => {
+      bar.style.width = 0;
+      observer.observe(bar);
+    });
+  </script>
+  <script src="script.js"></script>
+
+</body>
+</html>
