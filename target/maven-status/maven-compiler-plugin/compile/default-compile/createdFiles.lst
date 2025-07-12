@@ -1,3 +1,4 @@
 com/tourism/controllers/AdminDashboardController.class
 module-info.class
+com/tourism/test/FXMLLoadTest.class
 com/tourism/TourismAdminApp.class

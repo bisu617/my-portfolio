@@ -1,0 +1,28 @@
+# Maven build artifacts
+target/
+*.jar
+*.war
+*.ear
+*.class
+
+# IDE specific files
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+
+# OS specific files
+.DS_Store
+Thumbs.db
+
+# JavaFX specific
+*.fxbuild
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+/tmp/
