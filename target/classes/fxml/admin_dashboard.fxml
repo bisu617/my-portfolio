@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.collections.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="com.tourism.controllers.AdminDashboardController"
+            stylesheets="@../styles/admin_dashboard.css">
+    
+    <!-- Header Section -->
+    <top>
+        <VBox styleClass="header-section">
+            <padding>
+                <Insets top="15" right="15" bottom="15" left="15"/>
+            </padding>
+            <Label text="Tourism Admin Dashboard" styleClass="title-label"/>
+            <Label text="Manage tourism data, bookings, and analytics" styleClass="info-label" textFill="white"/>
+        </VBox>
+    </top>
+    
+    <!-- Main Content Area with ScrollPane for responsiveness -->
+    <center>
+        <ScrollPane fx:id="mainScrollPane" fitToWidth="true" fitToHeight="true" 
+                    hbarPolicy="NEVER" vbarPolicy="AS_NEEDED">
+            <content>
+                <TabPane fx:id="mainTabPane" tabClosingPolicy="UNAVAILABLE">
+                    
+                    <!-- Dashboard Overview Tab -->
+                    <Tab text="Overview">
+                        <content>
+                            <VBox styleClass="content-vbox">
+                                <padding>
+                                    <Insets top="20" right="20" bottom="20" left="20"/>
+                                </padding>
+                                
+                                <!-- Analytics Cards -->
+                                <Label text="Analytics Overview" styleClass="section-label"/>
+                                <HBox spacing="20">
+                                    <VBox styleClass="analytics-card" prefWidth="200">
+                                        <Label text="Total Bookings" styleClass="info-label"/>
+                                        <Label fx:id="totalBookingsLabel" text="1,245" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #32CD32;"/>
+                                    </VBox>
+                                    <VBox styleClass="analytics-card" prefWidth="200">
+                                        <Label text="Revenue This Month" styleClass="info-label"/>
+                                        <Label fx:id="revenueLabel" text="$45,678" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #4682B4;"/>
+                                    </VBox>
+                                    <VBox styleClass="analytics-card" prefWidth="200">
+                                        <Label text="Active Tours" styleClass="info-label"/>
+                                        <Label fx:id="activeToursLabel" text="23" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #FF6347;"/>
+                                    </VBox>
+                                </HBox>
+                                
+                                <!-- Charts Section -->
+                                <Label text="Performance Charts" styleClass="section-label"/>
+                                <HBox spacing="20" VBox.vgrow="ALWAYS">
+                                    <AreaChart fx:id="bookingTrendsChart" title="Booking Trends" styleClass="chart" prefWidth="400" prefHeight="300">
+                                        <xAxis>
+                                            <CategoryAxis fx:id="bookingTrendsXAxis" label="Month"/>
+                                        </xAxis>
+                                        <yAxis>
+                                            <NumberAxis fx:id="bookingTrendsYAxis" label="Number of Bookings"/>
+                                        </yAxis>
+                                    </AreaChart>
+                                    <PieChart fx:id="tourTypeChart" title="Tour Types Distribution" styleClass="chart" prefWidth="400" prefHeight="300"/>
+                                </HBox>
+                            </VBox>
+                        </content>
+                    </Tab>
+                    
+                    <!-- Bookings Management Tab -->
+                    <Tab text="Bookings">
+                        <content>
+                            <VBox styleClass="content-vbox">
+                                <padding>
+                                    <Insets top="20" right="20" bottom="20" left="20"/>
+                                </padding>
+                                
+                                <!-- Booking Controls -->
+                                <Label text="Booking Management" styleClass="section-label"/>
+                                <HBox styleClass="button-hbox">
+                                    <Button fx:id="addBookingBtn" text="Add Booking" styleClass="action-button, primary-button"/>
+                                    <Button fx:id="editBookingBtn" text="Edit Selected" styleClass="action-button, secondary-button"/>
+                                    <Button fx:id="deleteBookingBtn" text="Delete Selected" styleClass="action-button, danger-button"/>
+                                    <Separator orientation="VERTICAL"/>
+                                    <TextField fx:id="bookingSearchField" promptText="Search bookings..." prefWidth="200"/>
+                                    <Button fx:id="searchBookingBtn" text="Search" styleClass="action-button, secondary-button"/>
+                                </HBox>
+                                
+                                <!-- Bookings Table with ScrollPane -->
+                                <ScrollPane fitToWidth="true" prefHeight="400">
+                                    <content>
+                                        <TableView fx:id="bookingsTable" styleClass="table-view">
+                                            <columns>
+                                                <TableColumn fx:id="bookingIdColumn" text="Booking ID" prefWidth="100"/>
+                                                <TableColumn fx:id="customerNameColumn" text="Customer Name" prefWidth="150"/>
+                                                <TableColumn fx:id="tourNameColumn" text="Tour Name" prefWidth="200"/>
+                                                <TableColumn fx:id="bookingDateColumn" text="Booking Date" prefWidth="120"/>
+                                                <TableColumn fx:id="statusColumn" text="Status" prefWidth="100"/>
+                                                <TableColumn fx:id="totalAmountColumn" text="Total Amount" prefWidth="120"/>
+                                            </columns>
+                                        </TableView>
+                                    </content>
+                                </ScrollPane>
+                            </VBox>
+                        </content>
+                    </Tab>
+                    
+                    <!-- Tours Management Tab -->
+                    <Tab text="Tours">
+                        <content>
+                            <VBox styleClass="content-vbox">
+                                <padding>
+                                    <Insets top="20" right="20" bottom="20" left="20"/>
+                                </padding>
+                                
+                                <!-- Tour Controls -->
+                                <Label text="Tour Management" styleClass="section-label"/>
+                                <HBox styleClass="button-hbox">
+                                    <Button fx:id="addTourBtn" text="Add Tour" styleClass="action-button, primary-button"/>
+                                    <Button fx:id="editTourBtn" text="Edit Selected" styleClass="action-button, secondary-button"/>
+                                    <Button fx:id="deleteTourBtn" text="Delete Selected" styleClass="action-button, danger-button"/>
+                                    <Separator orientation="VERTICAL"/>
+                                    <TextField fx:id="tourSearchField" promptText="Search tours..." prefWidth="200"/>
+                                    <Button fx:id="searchTourBtn" text="Search" styleClass="action-button, secondary-button"/>
+                                </HBox>
+                                
+                                <!-- Tours Table with ScrollPane -->
+                                <ScrollPane fitToWidth="true" prefHeight="400">
+                                    <content>
+                                        <TableView fx:id="toursTable" styleClass="table-view">
+                                            <columns>
+                                                <TableColumn fx:id="tourIdColumn" text="Tour ID" prefWidth="80"/>
+                                                <TableColumn fx:id="tourTitleColumn" text="Tour Title" prefWidth="200"/>
+                                                <TableColumn fx:id="destinationColumn" text="Destination" prefWidth="150"/>
+                                                <TableColumn fx:id="durationColumn" text="Duration (Days)" prefWidth="120"/>
+                                                <TableColumn fx:id="priceColumn" text="Price" prefWidth="100"/>
+                                                <TableColumn fx:id="availabilityColumn" text="Availability" prefWidth="100"/>
+                                            </columns>
+                                        </TableView>
+                                    </content>
+                                </ScrollPane>
+                            </VBox>
+                        </content>
+                    </Tab>
+                    
+                    <!-- Customer Management Tab -->
+                    <Tab text="Customers">
+                        <content>
+                            <VBox styleClass="content-vbox">
+                                <padding>
+                                    <Insets top="20" right="20" bottom="20" left="20"/>
+                                </padding>
+                                
+                                <!-- Customer Controls -->
+                                <Label text="Customer Management" styleClass="section-label"/>
+                                <HBox styleClass="button-hbox">
+                                    <Button fx:id="addCustomerBtn" text="Add Customer" styleClass="action-button, primary-button"/>
+                                    <Button fx:id="editCustomerBtn" text="Edit Selected" styleClass="action-button, secondary-button"/>
+                                    <Button fx:id="deleteCustomerBtn" text="Delete Selected" styleClass="action-button, danger-button"/>
+                                    <Separator orientation="VERTICAL"/>
+                                    <TextField fx:id="customerSearchField" promptText="Search customers..." prefWidth="200"/>
+                                    <Button fx:id="searchCustomerBtn" text="Search" styleClass="action-button, secondary-button"/>
+                                </HBox>
+                                
+                                <!-- Customers Table with ScrollPane -->
+                                <ScrollPane fitToWidth="true" prefHeight="400">
+                                    <content>
+                                        <TableView fx:id="customersTable" styleClass="table-view">
+                                            <columns>
+                                                <TableColumn fx:id="customerIdColumn" text="Customer ID" prefWidth="100"/>
+                                                <TableColumn fx:id="firstNameColumn" text="First Name" prefWidth="120"/>
+                                                <TableColumn fx:id="lastNameColumn" text="Last Name" prefWidth="120"/>
+                                                <TableColumn fx:id="emailColumn" text="Email" prefWidth="200"/>
+                                                <TableColumn fx:id="phoneColumn" text="Phone" prefWidth="120"/>
+                                                <TableColumn fx:id="registrationDateColumn" text="Registration Date" prefWidth="140"/>
+                                            </columns>
+                                        </TableView>
+                                    </content>
+                                </ScrollPane>
+                            </VBox>
+                        </content>
+                    </Tab>
+                    
+                    <!-- Settings Tab -->
+                    <Tab text="Settings">
+                        <content>
+                            <ScrollPane fitToWidth="true" fitToHeight="true">
+                                <content>
+                                    <VBox styleClass="content-vbox">
+                                        <padding>
+                                            <Insets top="20" right="20" bottom="20" left="20"/>
+                                        </padding>
+                                        
+                                        <!-- Application Settings -->
+                                        <VBox styleClass="card-container">
+                                            <Label text="Application Settings" styleClass="section-label"/>
+                                            
+                                            <HBox styleClass="form-hbox">
+                                                <Label text="Default Currency:" prefWidth="150"/>
+                                                <ComboBox fx:id="currencyComboBox" prefWidth="200">
+                                                    <items>
+                                                        <FXCollections fx:factory="observableArrayList">
+                                                            <String fx:value="USD"/>
+                                                            <String fx:value="EUR"/>
+                                                            <String fx:value="GBP"/>
+                                                            <String fx:value="NPR"/>
+                                                        </FXCollections>
+                                                    </items>
+                                                </ComboBox>
+                                            </HBox>
+                                            
+                                            <HBox styleClass="form-hbox">
+                                                <Label text="Tax Rate (%):" prefWidth="150"/>
+                                                <TextField fx:id="taxRateField" text="13.0" prefWidth="200"/>
+                                            </HBox>
+                                            
+                                            <HBox styleClass="form-hbox">
+                                                <Label text="Company Name:" prefWidth="150"/>
+                                                <TextField fx:id="companyNameField" text="Tourism Company Ltd." prefWidth="200"/>
+                                            </HBox>
+                                            
+                                            <HBox styleClass="button-hbox">
+                                                <Button fx:id="saveSettingsBtn" text="Save Settings" styleClass="action-button, primary-button"/>
+                                                <Button fx:id="resetSettingsBtn" text="Reset to Default" styleClass="action-button, secondary-button"/>
+                                            </HBox>
+                                        </VBox>
+                                        
+                                        <!-- Database Settings -->
+                                        <VBox styleClass="card-container">
+                                            <Label text="Database Configuration" styleClass="section-label"/>
+                                            
+                                            <HBox styleClass="form-hbox">
+                                                <Label text="Connection Status:" prefWidth="150"/>
+                                                <Label fx:id="dbStatusLabel" text="Connected" style="-fx-text-fill: #32CD32; -fx-font-weight: bold;"/>
+                                            </HBox>
+                                            
+                                            <HBox styleClass="button-hbox">
+                                                <Button fx:id="testConnectionBtn" text="Test Connection" styleClass="action-button, secondary-button"/>
+                                                <Button fx:id="backupDatabaseBtn" text="Backup Database" styleClass="action-button, primary-button"/>
+                                            </HBox>
+                                        </VBox>
+                                    </VBox>
+                                </content>
+                            </ScrollPane>
+                        </content>
+                    </Tab>
+                    
+                </TabPane>
+            </content>
+        </ScrollPane>
+    </center>
+    
+    <!-- Footer/Status Bar -->
+    <bottom>
+        <HBox styleClass="header-section" spacing="10">
+            <padding>
+                <Insets top="10" right="15" bottom="10" left="15"/>
+            </padding>
+            <Label fx:id="statusLabel" text="Ready" style="-fx-text-fill: white;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="userLabel" text="Admin User" style="-fx-text-fill: white;"/>
+            <Separator orientation="VERTICAL" style="-fx-background-color: white;"/>
+            <Label fx:id="timeLabel" text="2024-01-01 12:00:00" style="-fx-text-fill: white;"/>
+        </HBox>
+    </bottom>
+    
+</BorderPane>
